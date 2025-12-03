@@ -1,200 +1,184 @@
-# AI-Driven Insurance Underwriting Co-Pilot 
+# AI-Driven Insurance Underwriting Co-Pilot:-
+[GenAI + Agentic AI + ML + Flask + Full-Stack Web App]
 
-Intelligent Risk Assessment | ML + GenAI + Business Rules | Flask Web App
+A production-grade, intelligent underwriting assistant that automates risk assessment, evaluates red flags, predicts customer interest, generates explainable AI-based reasoning, and recommends required documents — all through a modern full-stack dashboard.
 
-A powerful AI-assisted underwriting system that automates risk evaluation, explains decisions using GenAI, detects red flags, predicts customer behaviour using ML, and generates the required document checklist for underwriting — all inside one interactive dashboard.
+# Project Overview :
+Traditional insurance underwriting is slow and manually intensive. Underwriters must review customer details, evaluate risk, check past records, and manually decide policy issuance — leading to delays, inconsistency, and human error.
+This project solves that.
 
-# Project Overview:-
+The AI-Powered Underwriting Co-Pilot acts like a junior underwriter. It performs:
+* Automated risk validation
+* ML-based customer interest prediction
+* Red-flag detection
+* Composite risk scoring
+* GenAI reasoning (summary → rationale → recommendation)
+* Auto-generated document checklist
+* Full-stack dashboard UI
+* Chat-based AI assistant
+  
+This brings speed, transparency, accuracy, and explainability to underwriting.
 
-Traditional insurance underwriting is slow, manual, and inconsistent.
-Underwriters must read customer details, analyse risk factors, assess vehicle condition, interpret past insurance history, and make decisions — which often causes:
+# Key Features:
 
-* Delays in issuing decisions
-* Inconsistent judgement
-* Difficulty identifying red flags
-* Lack of explainability
-* Increased manual workload
+# 1. Business Rules Engine
+(from app.py)
+* Validates inputs
+* Detects red flags (no license, damage history, no prior insurance, young driver, etc.)
+* Generates warnings + error messages
+* Produces a red-flag score (0–100)
 
-# Solution: AI-Powered Underwriting Co-Pilot:-
-
-* This project acts as a junior underwriter, combining:
-* Machine Learning (XGBoost, Random Forest, Logistic Regression)
-* Business Rule Validation + Red Flag Engine
-* GenAI Multi-Stage Reasoning Chain
-* Document Recommendation Engine
-* Full-Stack Web Dashboard (HTML + CSS + JS + Flask)
-
-# Features:-
-
-# 1. Validation + Red Flag Detection Engine
-
-From your app.py logic, the system validates:
-* Age, premium, vintage ranges
-* License, insurance history
-* Vehicle age, condition
-* Region codes, risk categories
-
-Detects red flags such as:
-* No driving license
-* Previous vehicle damage
-* No prior insurance
-* Young driver (<25)
-* Low premium despite damage
-(Reference: Validation & red-flag logic inside BusinessRulesEngine in app.py)
-
-# 2. ML-Based Risk Prediction
-
-Machine learning predicts customer interest in buying insurance, using:
+# 2. ML Prediction Engine
+Models used:
 * XGBoost
 * Random Forest
 * Logistic Regression
 
-Model training includes:
-* Encoding
-* Scaling
-* SMOTE class balancing
-* Evaluation (ROC-AUC, Precision, Recall, F1)
+Pipeline steps:
+* Feature engineering
+* Encoding & scaling
+* SMOTE imbalance correction
+* Train, evaluate, compare models
+* Select best model (based on ROC-AUC)
 
-(Reference: Multi-Model Training Pipeline in EnhancedMultiModelPipeline)
+All dependencies in requirements.txt
 
- # 3. Composite Risk Scoring
+# 3. Composite Risk Scoring
+ Final risk tier = f(ML probability + red-flag score + business rules)
+* Low Risk – Auto approve
+* Medium Risk – Manual review
+* High Risk – Refer to senior / Reject
 
-A corrected risk logic combines:
-* ML probability
-* Red flag score
-* Underwriting risk
+Underwriters see:
+*ML probability
+Underwriting risk
+Business attractiveness
+Full breakdown with scoring visuals
 
-Final Tier = Low / Medium / High
-(Reference: EnhancedRiskTierEngine logic)
+# 4. GenAI Multi-Stage Reasoning Agent
+* Stage 1 — Summary
+* Stage 2 — Rationale
+* Stage 3 — Final Recommendation
+* Stage 4 — Chat Co-Pilot
 
-# 4. GenAI Multi-Stage Reasoning
+Uses OpenRouter API (from config.py)
 
-The GenAI Agent performs:
-
-* Stage 1: Summary
-* Stage 2: Decision Rationale
-* Stage 3: Underwriting Recommendation
-* Stage 4: Follow-up Chat Co-Pilot
-
-(Reference: GenAI Chain in EnhancedGenAIPromptChain)
-
- 5. Document Recommendation Engine
-
-Automatically generates documents required based on:
+# 5. Document Recommendation Engine
+Documents depend on:
 * Risk tier
 * Red flags
-* Vehicle history
-* Age groups
+* Vehicle condition
+* Age group
 
-(Reference: EnhancedDocumentRequestAgent in app.py)
+Examples:
+* RC, Aadhaar, PAN
+* Previous insurance
+* Damage assessment reports
+* Bank statements
+* Valuation reports
+* Gap-coverage declarations
 
 # 6. Full-Stack Dashboard UI
+(from frontend template test)
 
-Your frontend (from templates) contains:
-* Clean form for applicant details
-* Real-time risk score bar
-* Risk tier badge
-* AI explanations
-* Document checklist
-* Red flags list
-* Chat-based assistant
+Built with:
+* HTML
+* CSS
+* JavaScript
+* Flask templating
 
-(Reference: HTML structure in test.py frontend snippet showing dashboard UI elements)
+UI includes:
+* Applicant form
+* Risk score bar
+* Red-flags panel
+* AI insights cards
+* Document panel
+* Performance metrics
+* Chat AI assistant
 
-# Architecture Overview:-
+# Architecture Diagram:
 
-Frontend (HTML + CSS + JS)
-       ↓
-Flask Backend API
-       ↓
-Business Rules Engine
-       ↓
-ML Prediction Engine (XGBoost / RF / LR)
-       ↓
-Composite Risk Scorer
-       ↓
-GenAI Reasoning Chain (3 Stages)
-       ↓
+Frontend (HTML/CSS/JS)
+      ↓
+Flask Backend
+      ↓
+Business Rules Engine → Red Flags
+      ↓
+ML Engine (XGBoost/RF/LR)
+      ↓
+Composite Risk Engine
+      ↓
+GenAI Reasoning Chain (Summary → Rationale → Recommendation)
+      ↓
 Document Recommendation Engine
-       ↓
-Interactive Dashboard Output
+      ↓
+Final JSON to UI
 
-# Project Structure:-
-/project-root
--> app.py                     # Main Flask backend logic :contentReference[oaicite:10]{index=10}
--> config.py                  # API keys & configuration :contentReference[oaicite:11]{index=11}
--> requirements.txt           # All Python dependencies :contentReference[oaicite:12]{index=12}
--> test.py                    # Frontend HTML+JS code (template) :contentReference[oaicite:13]{index=13}
--> templates/
-   - index.html             # Dashboard UI
--> static/
-    - css/
-    - js/
--> models/                    # Trained ML models (saved using joblib)
--> data/
-     -train.csv              # Dataset or synthetic dataset
+# Project Structure:
+* app.py – Main backend (ML + rules + GenAI + API)
+* config.py – API keys & Flask config
+* test.py – Testing script
+* templates/ – Frontend HTML (index.html)
+* static/
+* css/ – Styles
+* js/ – Scripts
+* models/ – Saved ML models
+* data/ – Training dataset (train.csv)
+* requirements.txt – Dependencies
+* README.md – Documentation
+* logs/ – App logs (auto-created)
 
-# Installation & Setup:-
+# How It Works (End-to-End Workflow):
+* Underwriter fills form
+* Backend validates + checks red flags
+* ML predicts customer interest
+* Composite risk score calculated
+* Risk tier assigned
+* GenAI generates explanation + reasoning
+* Document engine lists required documents
+* Chat co-pilot answers questions
+* UI displays final results
 
-1. Clone the Repository
-cd Insurance-Underwriting-AI-Copilot
-
-2. Install Dependencies
-pip install -r requirements.txt
-
-3. Add API Key (OpenRouter)
-
-Update config.py:
-
-OPENROUTER_API_KEY = "your-key"
-
-4. Run the App
-python app.py
-
-
-Your dashboard will be live at:
-
-http://127.0.0.1:5000/
-
- # Tech Stack:-
-
+ # Tech Stack:
 Backend:
-* Flask
-* Python
-* Requests (OpenRouter API)
+* Python (Flask)
+* XGBoost, Random Forest, Logistic Regression
+* SMOTE, Label Encoding, Scaling
 * Joblib
-* Scikit-Learn
-* XGBoost
-* Imbalanced-Learn
+* Requests (OpenRouter API)
 
 Frontend:
 * HTML, CSS, JavaScript
-* Interactive dashboard
-* Chat-based AI assistant
+* Custom dashboard UI
 
-AI & ML:
-* Multi-model ML pipeline
-* Risk tiering engine
-* Feature engineering
-* SMOTE balancing
-* GenAI prompt chaining
+AI/ML:
+* GenAI reasoning pipeline
+* Composite risk scoring
+* Document intelligence
 
-# Results & Impact:-
+# Running the Project:
+1. Clone Repository:
+git clone <your_repo_url>
+cd underwriting-copilot
 
-Outcome:
-* The system provides a fast, intelligent, and explainable underwriting experience.
+2. Install Dependencies:
+pip install -r requirements.txt
 
- Impact:
-* Faster underwriting decisions
-*  AI-based explainability
-*   Consistent risk evaluation
-*   Reduced manual workload
-*    Auto-generated documents
+3. Set API Keys:
+Edit config.py with your OpenRouter key:
+OPENROUTER_API_KEY = "your-key"
+FLASK_SECRET_KEY = "your-secret"
 
-# Future Improvements:-
+4. Run Flask App:
+python app.py
 
-* Add OCR for reading documents
-* Add user authentication
-* Improve chat memory
-* Deploy on cloud
-* Add downloadable PDF reports
+5. Open in Browser:
+http://127.0.0.1:5000/
+
+# Results & Impact:
+*  Faster underwriting
+*  Consistent decisions
+*  Red-flag based risk detection
+*  Instant document recommendation
+*  Fully explainable AI
+*  Strong ML performance (ROC-AUC displayed on dashboard)
