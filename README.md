@@ -121,23 +121,22 @@ Interactive Dashboard Output
 
 # Project Structure:-
 /project-root
-│── app.py                     # Main Flask backend logic :contentReference[oaicite:10]{index=10}
-│── config.py                  # API keys & configuration :contentReference[oaicite:11]{index=11}
-│── requirements.txt           # All Python dependencies :contentReference[oaicite:12]{index=12}
-│── test.py                    # Frontend HTML+JS code (template) :contentReference[oaicite:13]{index=13}
-│── templates/
-│   └── index.html             # Dashboard UI
-│── static/
-│   ├── css/
-│   ├── js/
-│── models/                    # Trained ML models (saved using joblib)
-│── data/
-│   └── train.csv              # Dataset or synthetic dataset
+-> app.py                     # Main Flask backend logic :contentReference[oaicite:10]{index=10}
+-> config.py                  # API keys & configuration :contentReference[oaicite:11]{index=11}
+-> requirements.txt           # All Python dependencies :contentReference[oaicite:12]{index=12}
+-> test.py                    # Frontend HTML+JS code (template) :contentReference[oaicite:13]{index=13}
+-> templates/
+   - index.html             # Dashboard UI
+-> static/
+    - css/
+    - js/
+-> models/                    # Trained ML models (saved using joblib)
+-> data/
+     -train.csv              # Dataset or synthetic dataset
 
 # Installation & Setup:-
 
 1. Clone the Repository
-git clone https://github.com/yourusername/Insurance-Underwriting-AI-Copilot.git
 cd Insurance-Underwriting-AI-Copilot
 
 2. Install Dependencies
